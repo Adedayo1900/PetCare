@@ -17,6 +17,13 @@ It contains 1500 rows and 8 columns (product_id,category,animal,size,price,sales
 DATA SOURCE: This data was featured on DataCamp associate data analyst exam.
 
 # Analysis
+
+  # Tools used for this project
+Python libraries such as
+- pandas
+- seaborn
+- matplotlib
+
   # Importing of Data and viewing its data type.
 To begin analysis, This data was imported and a subset of the data was viewed to give an insight into its records. This was done using the python code below.
 
@@ -115,3 +122,6 @@ The calculation gave a t-test (t-stat) value of 3.1043 and a p-value of 0.00097.
 
 # Recommedation
 The analysis has shown that although products that enjoy repeat purchase boost sales by contributing more to total sales, however, products that do not enjoy repeat purchase also boost sales as they have higher average sale thereby generating more quality sales (sales above the 50th percentile of sales distribution), hence choosing to ignore them to focus on products with repeat_purchase might affect overall sales and cause a reduction in sale value or revenue.
+
+# Code
+The code for this project can be viewed here https://github.com/Adedayo1900/PetCare/blob/main/Pet%20supplies(2).ipynb
