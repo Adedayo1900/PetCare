@@ -1,8 +1,12 @@
+![WhatsApp Image 2023-10-25 at 02 27 28](https://github.com/Adedayo1900/PetCare/assets/130705411/d71ad135-bac0-4445-9ffb-0099e04cea7a)
+
 # PetCare
-PetCare is an organization that deals in pet related supplies. However, they are interested in prioritizing their marketing and distribution strategies to maximize sales. This project gives insight to how best they should channel their marketing strategy and maximize sales.
+PetCare is an organization that deals in pet related supplies. However, they are interested in prioritizing their marketing and distribution strategies to maximize sales. This project gives insight to how best they should channel their marketing strategy to maximize sales and increase revenue.
 
 # Overview
 PetCare deals in marketing and selling different categories of pet needs and they have got them in different sizes. Some of these products enjoy repeat purchase (A repeat purchase is the purchase of same product as bought on a previous occasion by a consumer). This indicates a degree of customer loyalty to a product. The marketing team at PetCare has a constrained budget and is looking at channelling all their resources to advertising and marketing of products that enjoy repeat purchases alone as they believe this will help boost sales rather than sharing their constrained budget on marketing all products. They have done this (focus on products that enjoy repeat_purchase) for six months and would like to know if their strategy is working and if they should continue this marketing strategy or go back to focusing on all products with inclusion of those that do not enjoy repeat purchase.
+
+![WhatsApp Image 2023-10-25 at 02 27 34](https://github.com/Adedayo1900/PetCare/assets/130705411/25f85d1a-ae3d-4dc7-93a7-29087675d17d)
 
 # Business Question
 Should PetCare continue to focus their marketing and advertising budget on only product that enjoy repeat_purchase?
@@ -69,26 +73,53 @@ To answer the business question of whether PetCare should shift from advertising
 
 The first was to check for the number of products that enjoy repeat_purchase and compare with those that do not. Also, i plot a graph of repeat purchase against sales to see their contribution to total sales.
 
-![image](https://github.com/Adedayo1900/PetCare/assets/130705411/faedfe0d-bc20-4063-a316-b7038c0ff384)
+```
+import pandas as pd 
+import matplotlib.pyplot as plt 
+import seaborn as sns
+g= sns.countplot(x= 'repeat_purchase', data= pet)
+g.set_title('Count of Product by Repeat_purchase')
+plt.show()
 
+Count_of_Product_by_Repeat_purchase = pet.groupby('repeat_purchase')['sales'].count()
+print(Count_of_Product_by_Repeat_purchase)
+```
 ![image](https://github.com/Adedayo1900/PetCare/assets/130705411/4192757b-91d6-4d26-a3df-d6a8bc5eb872)
 
-![image](https://github.com/Adedayo1900/PetCare/assets/130705411/742bf359-f82a-4b9f-bde6-c40201a4dd6c)
-
+```
+import pandas as pd 
+import matplotlib.pyplot as plt 
+import seaborn as sns
+g= sns.catplot(x='repeat_purchase', y= 'sales', data= pet, kind= 'bar', estimator=sum)
+g.fig.suptitle('Sum of Sales/ Total Sales by Repeat_purchase', y= 1.03)
+plt.show()
+```
 ![image](https://github.com/Adedayo1900/PetCare/assets/130705411/63aa1203-5853-4e2f-8e31-b78e71f061a4)
 
 From the plots above, one could tell that products with repeat_purchase were more and they contributed a lot to total sales. We might want to conclude that continued focus on products that enjoy repeat purchase is more beneficial as they truly contribute more to total sales.
 
 However, when i looked deeply, i realised that products that do no not enjoy repeat_purchase had a higher average sales compared to those that enjoy repeat purchase. This is show in the plot below.
 
-![image](https://github.com/Adedayo1900/PetCare/assets/130705411/3815365a-ab99-4d33-afb6-78053f057717)
-
+```
+import pandas as pd 
+import matplotlib.pyplot as plt 
+import seaborn as sns
+g= sns.catplot(x='repeat_purchase', y= 'sales', data= pet, kind= 'bar')
+g.fig.suptitle('Average Sales by Repeat_purchase', y=1.03)
+plt.show()
+```
 ![image](https://github.com/Adedayo1900/PetCare/assets/130705411/123dd4b1-6396-47a7-af4a-3b1c06426e87)
 
 This might suggest that although they aren't contributing as high as those that enjoy repeat purchases to total sales, they however generate high quality sales, i.e, their sale values are more concentrated above the 50th percentile of sales distribution compared to those that enjoy repeat purchase. This made me go ahead to view 'sales' distribution with respect to 'repeat_purchase'.
 
-![image](https://github.com/Adedayo1900/PetCare/assets/130705411/3660b47d-e073-4cfd-a925-5e46a2601073)
-
+```
+import pandas as pd 
+import matplotlib.pyplot as plt 
+import seaborn as sns
+g= sns.catplot(x='repeat_purchase', y= 'sales', data= pet, kind= 'box')
+g.fig.suptitle('Average Sales by Repeat_purchase', y=1.03)
+plt.show()
+```
 ![image](https://github.com/Adedayo1900/PetCare/assets/130705411/1b0fc81c-78f6-4c24-a661-1ce12ee19006)
 
 The box plot confirms the suggestion above as we can see that sales of products that do not enjoy repeat_purchase are more distributed above the 50th percentile compared to those that enjoy repeat_purchase.
@@ -99,9 +130,9 @@ The null hypothesis was an assumption that product that enjoy repeat purchase an
 
 The t-test which is represented in the analysis as t-stat was done using the code below.
 
-![image](https://github.com/Adedayo1900/PetCare/assets/130705411/5fffdcd9-31a0-4bcf-8c24-eddbf98f9ff6)
+![image](https://github.com/Adedayo1900/PetCare/assets/130705411/fe6b165a-fde4-4457-bfe9-07a7b19bfa3a)
 
-![image](https://github.com/Adedayo1900/PetCare/assets/130705411/b4e1407f-ea22-4686-b5f8-d11256c30973)
+![image](https://github.com/Adedayo1900/PetCare/assets/130705411/07166f14-4849-4360-865e-237ad3fd17ad)
 
 Where
 mean sales of repeat purchase= x_reap= 975.768400
@@ -118,10 +149,10 @@ frequency of non-repeat purchase= n_non_reap= 594
 
 degree of freedom= dfe= n_non_reap + n_reap - 2
 
-The calculation gave a t-test (t-stat) value of 3.1043 and a p-value of 0.00097. This p-value is below 0.05 and it indicates that there is a significant difference and they do not contribute equally to average sales.
+The calculation gave a t-test (t-stat) value of 3.1043 and a p-value of 0.00097. This p-value is below 0.05 and it indicates that there is a significant difference, they do not contribute equally to average sales and indeed, product that do not enjoy repeat purchase contribute more to average sales compared to those that enjoy repeat purchase.
 
 # Recommedation
-The analysis has shown that although products that enjoy repeat purchase boost sales by contributing more to total sales, however, products that do not enjoy repeat purchase also boost sales as they have higher average sale thereby generating more quality sales (sales above the 50th percentile of sales distribution), hence choosing to ignore them to focus on products with repeat_purchase might affect overall sales and cause a reduction in sale value or revenue.
+The analysis has shown that although products that enjoy repeat purchase boost sales by contributing more to total sales, however, products that do not enjoy repeat purchase also boost sales as they have higher average sale which implies that they generate more quality sales (sales above the 50th percentile of sales distribution), hence choosing to ignore them to focus on products with repeat_purchase might affect overall sales and cause a reduction in sale value or revenue.
 
 # Code
 The code for this project can be viewed here https://github.com/Adedayo1900/PetCare/blob/main/Pet%20supplies(2).ipynb
